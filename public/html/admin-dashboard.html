@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="/public/images/Main logo fevicon.svg">
+  <link rel="stylesheet" href="../css/admin-dashboard.css">
+</head>
+
+<body>
+  <header class="dashboard-header">
+    <div class="Mumbai-logo">
+      <a href="#">
+        <img class="logo" alt="Mumbai Plogger" src="/public/images/Main logo fevicon.svg" />
+      </a>
+    </div>
+    <h1 class="Admin-dashboard">Admin Dashboard</h1>
+    <nav class="dashboard-nav">
+      <a class="nav-link" href="#Add-event">Add Event</a>
+      <a class="nav-link" href="#Delete-event">Delete Event</a>
+      <a class="nav-link" href="#Upload-img">Add Photo</a>
+      <button id="logoutBtn" class="logout-button">Logout</button>
+    </nav>
+  </header>
+
+  <script>
+    // Add event listener for the logout button
+    document.getElementById('logoutBtn').addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent any default form submission or button action
+
+      console.log("Logging out...");
+
+      // Make a POST request to the logout endpoint
+      fetch('http://localhost:5000/logout', {
+        method: 'POST', // Logout via POST request
+        headers: {
+          'Content-Type': 'application/json', // Ensure proper content type
+        }
+      })
+        .then(response => {
+          console.log("Response status:", response.status); // Log response status
+          if (!response.ok) {
+            throw new Error('Logout failed');
+          }
+          return response.text(); // Process response text (in this case, just a message)
+        })
+        .then(data => {
+          // alert(data || 'Logged out successfully!');
+          window.location.href = "/index.html"; // Absolute path, directs to the root of your website
+        })
+        .catch(err => {
+          console.error('Error during logout:', err);
+          alert('Failed to log out: ' + err.message);
+        });
+    });
+  </script>
+
+
+  <section id="Add-event" class="dashboard-content">
+    <h2>Add Upcoming Event</h2>
+    <form id="addEventForm">
+      <input class="add-event-input" type="text" id="eventName" placeholder="Event Name" required> <br>
+
+      <div class="time-input">
+        <input class="add-event-input" type="date" id="eventDate" required> <br>
+        <select id="eventHour" class="add-event-input" required>
+          <option value="">Hour</option>
+          <!-- Generate options from 1 to 12 -->
+          <script>
+            for (let i = 1; i <= 12; i++) {
+              document.write(`<option value="${i}">${i}</option>`);
+            }
+          </script>
+        </select>
+
+        <select id="eventMinute" class="add-event-input" required>
+          <option value="">Minute</option>
+          <!-- Generate options from 00 to 59 -->
+          <script>
+            for (let i = 0; i < 60; i += 5) {
+              const formattedMinute = i < 10 ? '0' + i : i;
+              document.write(`<option value="${formattedMinute}">${formattedMinute}</option>`);
+            }
+          </script>
+        </select>
+
+        <select id="eventAMPM" class="add-event-input" required>
+          <option value="">AM/PM</option>
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+        </select>
+      </div>
+
+      <input class="add-event-input" type="text" id="eventLocation" placeholder="Location" required> <br>
+      <input class="add-event-input" type="url" id="joinLink" placeholder="Join Link" required>
+      <br>
+      <button class="add-event-btn" type="submit">Add Event</button>
+    </form>
+
+    <script>
+      document.getElementById('addEventForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const eventName = document.getElementById('eventName').value;
+        const eventDate = document.getElementById('eventDate').value;
+        const eventHour = parseInt(document.getElementById('eventHour').value, 10);
+        const eventMinute = parseInt(document.getElementById('eventMinute').value, 10);
+        const eventAMPM = document.getElementById('eventAMPM').value;
+        const eventLocation = document.getElementById('eventLocation').value;
+        const joinLink = document.getElementById('joinLink').value;
+
+        // Create a Date object from the input values
+        let hour = eventAMPM === 'PM' && eventHour < 12 ? eventHour + 12 : eventHour;
+        hour = eventAMPM === 'AM' && eventHour === 12 ? 0 : hour; // 12 AM is 0 hours
+        const dateTimeString = `${eventDate}T${String(hour).padStart(2, '0')}:${String(eventMinute).padStart(2, '0')}:00`;
+
+        console.log("Submitting Event:", { eventName, dateTimeString, eventLocation, joinLink });
+
+        fetch('http://localhost:5000/events', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: eventName,
+            date_time: dateTimeString, // Send the formatted dateTimeString
+            location: eventLocation,
+            join_link: joinLink,
+          }),
+        })
+          .then(response => {
+            console.log("Response status:", response.status);
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            // alert(data.message || 'Event added successfully!');
+            window.open("/index.html", "_blank");
+          })
+          .catch(err => {
+            console.error('Error adding event:', err);
+            alert('Failed to add event: ' + err.message);
+          });
+      });
+    </script>
+
+    <h2 id="Delete-event">Delete Event</h2>
+    <form id="deleteEventForm">
+      <input class="add-event-input" type="text" id="eventNameToDelete" placeholder="Event Name to Delete" required>
+      <br>
+      <button class="add-event-btn" type="submit">Delete Event</button>
+    </form>
+
+    <script>
+      document.getElementById('deleteEventForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const eventNameToDelete = document.getElementById('eventNameToDelete').value;
+
+        console.log("Deleting Event:", eventNameToDelete);
+
+        fetch(`http://localhost:5000/events/${eventNameToDelete}`, {
+          method: 'DELETE',
+        })
+          .then(response => {
+            console.log("Response status:", response.status); // Log response status
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            // alert(data.message || 'Event deleted successfully!');
+            window.open("/index.html", "_blank"); // Opens index.html in a new tab
+          })
+          .catch(err => {
+            console.error('Error deleting event:', err);
+            alert('Failed to delete event: ' + err.message);
+          });
+      });
+    </script>
+    <h2 id="Upload-img">Upload Photo to Gallery</h2>
+    <form id="photoForm" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="photoUpload">Select Photo:</label>
+        <input type="file" id="photoUpload" accept="image/*" required>
+      </div>
+      <div class="form-group">
+        <label for="photoLocation">Location:</label>
+        <input type="text" id="photoLocation" placeholder="Enter Location" required>
+      </div>
+      <button type="submit" class="btn">Upload Photo</button>
+    </form>
+
+    <h2>Delete Photo from Gallery</h2>
+    <form id="deletePhotoForm">
+      <input type="text" id="deletePhotoFilename" class="add-event-input" placeholder="Enter photo filename to delete"
+        required>
+      <div><button type="submit" class="btn">Delete Photo</button></div>
+    </form>
+
+    <div id="deleteStatus"></div> <!-- To show delete status -->
+
+
+  </section>
+
+
+  <script src="/public/js/admin-dashboard.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+/* Style for the gallery container */
+#image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+
+/* Style for the images */
+.gallery-image {
+  width: 500px; /* Set a fixed width */
+  height: 300px; /* Maintain aspect ratio */
+  border: 2px solid #ddd;
+  padding: 5px;
+}
+* {
+  background-image: url(/public/images/pexels-karolina-grabowska-5412191.jpg);
+}
