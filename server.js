@@ -110,10 +110,21 @@ app.post("/upload-image", upload.single("image"), (req, res) => {
 // API to delete an image by filename
 app.delete("/delete-photo/:filename", (req, res) => {
   const photoPath = path.join(uploadDirectory, req.params.filename);
+
+  // Delete the file from the server directory
   fs.unlink(photoPath, (err) => {
     if (err)
       return res.status(500).json({ message: "Failed to delete the photo." });
-    res.status(200).json({ message: "Photo deleted successfully!" });
+
+    // After successfully deleting the file, remove its record from the database
+    const sql = "DELETE FROM images WHERE filename = ?";
+    db.query(sql, [req.params.filename], (dbErr, result) => {
+      if (dbErr)
+        return res
+          .status(500)
+          .json({ message: "Failed to delete from database." });
+      res.status(200).json({ message: "Photo deleted successfully!" });
+    });
   });
 });
 
