@@ -13,5 +13,34 @@
   padding: 5px;
 }
 * {
-  background-image: url(/public/images/pexels-karolina-grabowska-5412191.jpg);
+  background-image: url("/public/images/bg gallery.jpeg"); /* Fix the path for accuracy */
+  background-size: cover; /* Makes the image cover the entire area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Optional: Keeps the image fixed in place during scrolling */
+}
+
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+}
+
+.gallery-header {
+  background-image: linear-gradient(135deg, #10df89, #1b4332);
+  color: white;
+  padding: 50px 0;
+  text-align: center;
+  background-color: #1b4332;
+  font-family: "Montserrat", sans-serif;
+}
+
+.gallery-header h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  margin: 0;
+  background-image: linear-gradient(135deg, #10df89, #1b4332);
+
+  animation: fadeIn 2s ease-in-out;
 }
