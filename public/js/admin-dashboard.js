@@ -118,8 +118,14 @@ document
       .then((data) => {
         document.getElementById("uploadStatus").textContent =
           data.message || "Photo uploaded successfully!";
+
         photoInput.value = ""; // Clear the file input after upload
+      })
+      .then((data) => {
+        // alert(data.message || 'Event added successfully!');
+        window.open("/public/html/gallery.html", "_blank");
       });
+
     // .catch((error) => {
     //   console.error("Error uploading photo:", error);
     //   document.getElementById("uploadStatus").textContent =
@@ -156,6 +162,10 @@ document
         document.getElementById("deleteStatus").textContent =
           data.message || "Photo deleted successfully!";
         document.getElementById("deletePhotoFilename").value = ""; // Clear the input after deletion
+      })
+      .then((data) => {
+        // alert(data.message || 'Event added successfully!');
+        window.open("/public/html/gallery.html", "_blank");
       })
       .catch((error) => {
         console.error("Error deleting photo:", error);
