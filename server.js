@@ -168,9 +168,7 @@ app.get("/gallery-images", (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, `localhost`, () => {
-  console.log(
-    `Server is running on http://127.0.0.1:${PORT} and http://localhost:${PORT}`
-  );
+const PORT = process.env.PORT || 10000; // Or whichever port you defined
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
