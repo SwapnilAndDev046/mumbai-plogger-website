@@ -47,7 +47,7 @@ document
     const password = document.getElementById("password").value;
 
     // Check the credentials
-    if (username === "Divakar_2024" && password === "MUMBAI_PLOG11") {
+    if (username === "Rashmi_2024" && password === "MUMBAI_PLOG11") {
       // Open the admin dashboard
       window.location.href = "public/html/admin-dashboard.html"; // Ensure the path is correct
     } else {
@@ -108,3 +108,24 @@ function displayUpcomingEvents() {
 
 // Call the function to display events when the page loads
 document.addEventListener("DOMContentLoaded", displayUpcomingEvents);
+
+/* FAQ */
+const faqQuestions = document.querySelectorAll(".faq-question");
+
+faqQuestions.forEach((question) => {
+  question.addEventListener("click", () => {
+    const answer = question.nextElementSibling;
+
+    faqQuestions.forEach((q) => {
+      if (q !== question) {
+        q.nextElementSibling.style.maxHeight = null;
+      }
+    });
+
+    if (answer.style.maxHeight) {
+      answer.style.maxHeight = null;
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+  });
+});

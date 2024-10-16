@@ -7,19 +7,25 @@
   <title>Gallery</title>
   <link rel="stylesheet" href="../css/gallery.css"> <!-- Link to your CSS file -->
   <link rel="icon" type="image/x-icon" href="/public/images/Main logo fevicon.png">
-
 </head>
 
 <body>
   <header class="gallery-header">
     <h1>Gallery</h1>
+    <!-- Back Button -->
+    <button onclick="goBack()" class="back-button">Back</button>
   </header>
 
-  <div id="image-gallery">
+  <div id="image-gallery" class="image-mera">
     <!-- Images will be dynamically inserted here -->
   </div>
 
   <script src="../js/gallery.js"></script> <!-- Link to your gallery.js script -->
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
 </body>
 
 </html>

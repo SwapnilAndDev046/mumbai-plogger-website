@@ -2,18 +2,20 @@
 #image-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 5rem;
+  gap: 4rem;
+  padding-top: 2rem;
 }
 
 /* Style for the images */
 .gallery-image {
-  width: 500px; /* Set a fixed width */
-  height: 300px; /* Maintain aspect ratio */
-  border: 2px solid #ddd;
+  width: 40rem; /* Set a fixed width */
+  height: 20rem; /* Maintain aspect ratio */
+  border: 0.1rem solid #ddd;
   padding: 5px;
 }
-* {
-  background-image: url("/public/images/bg gallery.jpeg"); /* Fix the path for accuracy */
+.image-mera {
+  background-image: linear-gradient(to bottom, #90a7b5, transparent 50%),
+    url("/public/images/bg%20gallery%202.jpg");
   background-size: cover; /* Makes the image cover the entire area */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -27,20 +29,50 @@ body {
 }
 
 .gallery-header {
-  background-image: linear-gradient(135deg, #10df89, #1b4332);
   color: white;
-  padding: 50px 0;
+  padding: 1rem 0;
   text-align: center;
-  background-color: #1b4332;
+  background-color: #90a7b5;
   font-family: "Montserrat", sans-serif;
+  position: sticky; /* Makes the header sticky */
+  top: 0; /* Sticks the header to the top of the viewport */
+  z-index: 1000; /* Ensures the header stays above other elements */
 }
 
 .gallery-header h1 {
-  font-size: 4rem;
+  font-size: 3.5rem;
   text-transform: uppercase;
   letter-spacing: 5px;
   margin: 0;
-  background-image: linear-gradient(135deg, #10df89, #1b4332);
-
+  /* background-image: url(/public/images/about\ us\ core\ team\ bg\ img.jpg); */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  position: sticky;
   animation: fadeIn 2s ease-in-out;
+}
+
+/* Styling for the back button */
+.back-button {
+  position: absolute; /* Position it in the corner */
+  top: 20px; /* Distance from the top */
+  left: 20px; /* Distance from the left */
+  padding: 10px 20px; /* Padding inside the button */
+  font-size: 16px; /* Button text size */
+  background-color: #5d849c; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove default border */
+  border-radius: 7rem; /* Circular edges */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.back-button:hover {
+  background-color: #0056b3; /* Darken the button on hover */
+}
+
+/* Additional styling for positioning the button inside the header */
+.gallery-header {
+  position: relative; /* Allows the button to be positioned inside the header */
+  padding: 20px;
+  text-align: center; /* Center-align the header content */
 }
