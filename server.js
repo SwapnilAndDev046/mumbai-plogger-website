@@ -177,7 +177,7 @@ app.listen(PORT, () => {
 
 // Serve the index.html file
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "html", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get("/gallery", (req, res) => {
