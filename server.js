@@ -177,6 +177,7 @@ app.listen(PORT, () => {
 
 // Serve the index.html file
 app.get("/", (req, res) => {
+  console.log("Root route accessed"); // Add this line
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
