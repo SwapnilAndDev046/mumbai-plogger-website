@@ -1,9 +1,10 @@
 const express = require("express");
-const mysql = require("mysql");
+
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
+const mysql = require("mysql2");
 
 const app = express();
 
@@ -13,22 +14,16 @@ app.use(cors()); // Use CORS middleware
 
 // Set up MySQL connection
 const db = mysql.createConnection({
-  host: "mysql-17a2c69b-swapnildevkate93-b9f7.i.aivencloud.com",
-  user: "avnadmin",
-  password: "AVNS_gxeCrqxRBYkcfnAsgUU",
-  database: "events_db",
-  port: 21524,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  host: "localhost", // Database host
+  user: "root", // Your MySQL username
+  password: "Swap$gri11", // Your MySQL password
+  database: "mumbai_plog", // The database you created
 });
 
+// Connect to the database
 db.connect((err) => {
-  if (err) {
-    console.error("Database connection failed:", err);
-    return;
-  }
-  console.log("Connected to MySQL database");
+  if (err) throw err; // Handle connection errors
+  console.log("MySQL connected...");
 });
 
 // Example route for testing the server

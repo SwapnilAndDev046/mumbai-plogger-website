@@ -114,23 +114,26 @@ document
       method: "POST",
       body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
         document.getElementById("uploadStatus").textContent =
           data.message || "Photo uploaded successfully!";
 
         photoInput.value = ""; // Clear the file input after upload
-      })
-      .then((data) => {
-        // alert(data.message || 'Event added successfully!');
-        window.open("/public/html/gallery.html", "_blank");
-      });
 
-    // .catch((error) => {
-    //   console.error("Error uploading photo:", error);
-    //   document.getElementById("uploadStatus").textContent =
-    //     "Failed to upload photo.";
-    // });
+        // Redirect to the gallery page in a new tab after upload
+        window.open("http://127.0.0.1:5000/public/html/gallery.html", "_blank");
+      })
+      .catch((error) => {
+        console.error("Error uploading photo:", error);
+        document.getElementById("uploadStatus").textContent =
+          "Failed to upload photo.";
+      });
   });
 
 // Handle photo deletion
