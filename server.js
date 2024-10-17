@@ -168,24 +168,9 @@ app.get("/gallery-images", (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 5000; // Use the Render port or default to 5000
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-// setuping routes
-
-// Serve the index.html file
-app.get("/", (req, res) => {
-  console.log("Root route accessed"); // Add this line
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-app.get("/gallery", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "html", "gallery.html"));
-});
-
-// Serve the admin dashboard
-app.get("/admin-dashboard", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "html", "admin-dashboard.html"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, `localhost`, () => {
+  console.log(
+    `Server is running on http://127.0.0.1:${PORT} and http://localhost:${PORT}`
+  );
 });
