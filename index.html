@@ -23,7 +23,7 @@
       <!-- Add the text here -->
       <div class="logo-text">
         <h1 class="main-title">Mumbai Ploggers</h1>
-        <p class="tagline">Protecting Tomorrow, Today Together</p>
+        <p class="tagline">Tomorrow’s hope begins with today’s actions. </p>
       </div>
     </div>
 
@@ -66,19 +66,30 @@
 
 
 
+
   <section class="section-featured">
     <div class="container">
-      <h2 class="heading-featured-in">Recognized by</h2>
-      <div class="logos">
-        <a href="https://www.mcgm.gov.in/irj/portal/anonymous?guest_user=english"> <img class="news"
-            src="/public/images/BMC.png" alt="economic times" /></a>
-        <a href="https://thanecity.gov.in/tmc/CitizenHome.html"><img class="news" src="/public/images/TMC.png"
-            alt="news band" /></a>
-        <a href="https://www.panvelcorporation.com/"><img class="news" src="/public/images/PMC.png"
-            alt="Sakal news" /></a>
+      <h2 class="heading-featured-in">RECOGNIZED BY</h2>
 
-
+      <!-- Slider for Left to Right -->
+      <div class="slider">
+        <div class="slider-wrapper-left">
+          <img class="news" src="/public/images/economic times.png" alt="economic times" />
+          <img class="news" src="/public/images/news band logo.png" alt="news band" />
+          <img class="news" src="public/images/PMC.png" alt="panvel" />
+          <img class="news" src="public/images/BMC.png" alt="municipal" />
+        </div>
       </div>
+
+      <!-- Slider for Right to Left -->
+      <div class="slider">
+        <div class="slider-wrapper-right">
+          <img class="news" src="/public/images/sakal logo.png" alt="Sakal news" />
+          <img class="news" src="/public/images/the times of india logo.jpg" alt="times of india" />
+          <img class="news" src="public/images/TMC-removebg-preview.png" alt="thane" />
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -94,8 +105,57 @@
         Mumbai and
         sensitize our communities towards the issues of waste management and environmental conservation.
       </p>
-
     </div>
+
+    <div class="approach-about">
+      <h2 class="vision-h2">Our Approach</h2>
+
+      <div class="image-row">
+        <div class="image-container">
+          <img src="public/images/working with comm.jpg" alt="Working with communities and individuals">
+          <p>Working with communities and individuals</p>
+        </div>
+
+        <div class="image-container">
+          <img src="public/images/changing mindsets.jpg" alt="Changing Mindsets">
+          <p>Changing Mindsets</p>
+        </div>
+
+        <div class="image-container">
+          <img src="public/images/impacting environment.jpg" alt="Impacting environment">
+          <p>Impacting environment</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sdgsfeatures-about">
+      <h2 class="vision-h2">SDGs ADDRESSED</h2>
+
+      <div class="image-row">
+        <div class="image-container">
+          <img src="public/images/good health and well being.jpg" alt="good health and well being">
+        </div>
+        <div class="image-container">
+          <img src="public/images/sustainable cities and communities.jpg" alt="sustainable cities and communities">
+        </div>
+        <div class="image-container">
+          <img src="public/images/responsible consumption and protocol.jpg" alt="responsible consumption and protocol">
+        </div>
+      </div>
+
+      <div class="image-row">
+        <div class="image-container">
+          <img src="public/images/climate action.jpg" alt="climate action">
+        </div>
+        <div class="image-container">
+          <img src="public/images/life below water.jpg" alt="life below water">
+        </div>
+        <div class="image-container">
+          <img src="public/images/life on land.jpg" alt="life on land">
+        </div>
+      </div>
+    </div>
+
     <div class="about-img-box">
 
       <div class="Rashmi-pic"><img src="/public/images/Rashmi Singh.png" alt="Rashmi"></div>
@@ -144,10 +204,12 @@
 
         </div>
       </div>
-
+      <div class="join-butt">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScnVIfzl9LkPOuE-o_wG1qoo4OtNG0bV66W5arocdD08XACbw/viewform"
+          class="join-us-btn">Join Us</a>
+      </div>
       <!-- Join Us button -->
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScnVIfzl9LkPOuE-o_wG1qoo4OtNG0bV66W5arocdD08XACbw/viewform"
-        class="join-us-btn">Join Us</a>
+
 
     </section>
 
@@ -199,6 +261,65 @@
     </div>
   </section>
 
+  <section class="footer">
+    <div class="footer-content">
+      <h2 class="footer-title">How to Plog?</h2>
+      <p class="footer-description">
+        Plogging combines jogging with picking up litter. Here’s how you can get started:
+      </p>
+      <ol class="plogging-steps">
+        <li><strong>Gear Up:</strong> Wear comfortable running shoes and gloves to protect your hands.</li>
+        <li><strong>Choose a Route:</strong> Pick a path you enjoy, whether it's a park, beach, or neighborhood.</li>
+        <li><strong>Bring a Bag:</strong> Use a reusable bag to collect litter as you jog.</li>
+        <li><strong>Stay Safe:</strong> Be aware of your surroundings and avoid dangerous areas.</li>
+        <li><strong>Dispose of Waste Properly:</strong> Make sure to sort and dispose of the collected litter
+          responsibly. Recycle where possible!</li>
+        <li><strong>Enjoy the Experience:</strong> Plogging is a great way to exercise while making your community
+          cleaner!</li>
+      </ol>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const footerContent = document.querySelector('.footer-content');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            footerContent.classList.add('visible'); // Add the visible class when in view
+            footerContent.style.animation = 'slideIn 0.8s ease-out forwards'; // Trigger animation
+          }
+        });
+      });
+
+      observer.observe(footerContent); // Observe the footer content
+    });
+  </script>
+
+  <section id="environmental-clubs">
+    <div class="container">
+      <h2 class="heading-featured-in">Environmental Clubs</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="public/images/menstruation.png" alt="Session on Sustainable menstruation">
+          <h3>Menstruation awareness</h3>
+          <p>Session on Sustainable menstruation</p>
+        </div>
+        <div class="card">
+          <img src="public/images/Chalk of shame.png" alt="Chalk of Shame - Chalk Awareness Drive on Roads">
+          <h3>Chalk of Shame</h3>
+          <p> Chalk Awareness Drive on Roads.</p>
+        </div>
+        <div class="card">
+          <img src="public/images/waste seggregation.png" alt="Waste Segregation Awareness Drive in Slums">
+          <h3>Waste seggregation</h3>
+          <p>Waste Segregation Awareness Drive in Slums</p>
+        </div>
+        <!-- Add more cards as needed -->
+      </div>
+    </div>
+  </section>
 
   <section id="faq">
     <h2>Frequently Asked Questions</h2>
@@ -264,7 +385,7 @@
         <a href="https://wa.me/123456789" target="_blank" class="social-icon whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="https://www.twitter.com" target="_blank" class="social-icon twitter">
+        <a href="https://x.com/theplogwoman" target="_blank" class="social-icon twitter">
           <i class="fab fa-twitter"></i>
         </a>
         </a>

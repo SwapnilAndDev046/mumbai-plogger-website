@@ -23,12 +23,15 @@ body {
 }
 
 .image-mera {
-  background-image: linear-gradient(to bottom, #90a7b5, transparent 20%),
-    url("/public/images/gallery-bg2.JPG");
-  background-size: cover; /* Makes the image cover the entire area */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  background-attachment: fixed; /* Keeps the image fixed in place during scrolling */
+  background-image: linear-gradient(
+    to bottom,
+    #a8d5ba,
+    #6bbf73
+  ); /* Green gradient */
+  background-size: cover; /* Ensures the background covers the entire area */
+  background-position: center; /* Centers the gradient */
+  background-repeat: no-repeat; /* Prevents repeating */
+  background-attachment: fixed; /* Keeps the background fixed during scrolling */
 }
 
 /* Sticky header style */
@@ -36,7 +39,7 @@ body {
   color: white;
   padding: 0.5rem 0; /* Reduced padding */
   text-align: center;
-  background-color: rgba(142, 159, 169, 0.8); /* Added transparency */
+  background-color: rgba(45, 106, 79, 0.8); /* Green color with 80% opacity */
   font-family: "Montserrat", sans-serif;
   position: sticky; /* Makes the header sticky */
   top: 0; /* Sticks the header to the top of the viewport */
@@ -55,7 +58,7 @@ body {
   left: 20px; /* Distance from the left */
   padding: 10px 20px; /* Padding inside the button */
   font-size: 16px; /* Button text size */
-  background-color: #5d849c; /* Button background color */
+  background-color: #033a13; /* Button background color */
   color: white; /* Button text color */
   border: none; /* Remove default border */
   border-radius: 7rem; /* Circular edges */
@@ -64,5 +67,5 @@ body {
 }
 
 .back-button:hover {
-  background-color: #0056b3; /* Darken the button on hover */
+  background-color: #6bbf73; /* Darken the button on hover */
 }
