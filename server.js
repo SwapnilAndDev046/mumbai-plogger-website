@@ -14,18 +14,26 @@ app.use(cors()); // Use CORS middleware
 
 // Set up MySQL connection
 const db = mysql.createConnection({
-  host: "localhost", // Database host
-  user: "root", // Your MySQL username
-  password: "Swap$gri11", // Your MySQL password
-  database: "mumbai_plog", // The database you created
+  host: "mysql-17a2c69b-swapnildevkate93-b9f7.i.aivencloud.com",
+  user: "avnadmin",
+  password: "",
+  database: "events_db",
+  port: 21524,
+  ssl: {
+    // Load the CA certificate from the images folder
+    ca: fs.readFileSync("public/images/ca.pem"), // Adjust to the actual file name
+    rejectUnauthorized: true, // Ensure strict certificate validation
+  },
 });
 
 // Connect to the database
 db.connect((err) => {
-  if (err) throw err; // Handle connection errors
-  console.log("MySQL connected...");
+  if (err) {
+    console.error("Database connection failed:", err);
+    return;
+  }
+  console.log("Connected to MySQL database");
 });
-
 // Example route for testing the server
 app.get("/", (req, res) => {
   res.send("Server is running!");
