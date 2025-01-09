@@ -18,7 +18,7 @@ html {
   height: 5rem; /* Adjust the overall height of the header */
   padding: 0 3rem; /* Adjust padding for more space inside the header */
   width: 100%; /* Make sure it spans the full width of the viewport */
-  max-width: 100rem; /* Optional: Limit the maximum width */
+  max-width: 150rem; /* Optional: Limit the maximum width */
   margin: 0 auto; /* Center the header content if max-width is used */
   position: sticky;
   top: 0;
@@ -198,7 +198,7 @@ html {
   background-image: linear-gradient(to bottom, #427860, transparent 50%),
     url("/public/images/Group Photo XI.png");
 
-  height: 41.132rem;
+  height: 47.132rem;
   width: auto;
 
   background-position: center;
